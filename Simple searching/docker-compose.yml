@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  mysql:
+    build:
+      context: ./MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - service
+
+  backend:
+    build:
+      context: ./Go
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+      MYSQL_DATABASE: mydatabase
+    depends_on:
+      - mysql
+    networks:
+      - service
+
+  nginx:
+    build:
+      context: ./Nginx
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+    networks:
+      - service
+
+networks:
+  service:
+    driver: bridge
+
+volumes:
+  mysql-data:
