@@ -4,6 +4,8 @@ services:
   mysql:
     build:
       context: ./MySQL
+    ports:
+      - "3306"
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: mydatabase
@@ -17,6 +19,8 @@ services:
   backend:
     build:
       context: ./Go
+    ports:
+      - "8080"
     environment:
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
