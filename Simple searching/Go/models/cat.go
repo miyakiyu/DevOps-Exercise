@@ -9,7 +9,7 @@ type Cat struct {
 	Name string `json:"name"`
 }
 
-func GetAllCats(db *gorm.DB) ([]Cat, error) {
+func GetCats(db *gorm.DB) ([]Cat, error) {
 	var cats []Cat
 	result := db.Find(&cats)
 	return cats, result.Error
