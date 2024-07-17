@@ -5,12 +5,15 @@ services:
     build:
       context: ./MySQL
     ports:
-      - "3906:3306"
+      - "3306:3306"
+    expose:
+      - "3306"
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: cat
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 12345
     volumes:
       - mysql-data:/var/lib/mysql
     networks:
@@ -19,6 +22,7 @@ services:
   backend:
     build:
       context: ./Go
+    command: bash -c 'sleep 60; ./main'
     expose:
       - "8080"
     environment:
