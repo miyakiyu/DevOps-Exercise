@@ -5,7 +5,7 @@ services:
     build:
       context: ./MySQL
     ports:
-      - "3306"
+      - "3906:3306"
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: mydatabase
@@ -19,7 +19,7 @@ services:
   backend:
     build:
       context: ./Go
-    ports:
+    expose:
       - "8080"
     environment:
       MYSQL_HOST: mysql
@@ -36,7 +36,7 @@ services:
     build:
       context: ./Nginx
     ports:
-      - 80:80
+      - "80:80"
     depends_on:
       - backend
     networks:
