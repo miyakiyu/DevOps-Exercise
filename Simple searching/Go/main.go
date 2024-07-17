@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// Globla setting
-	dsn := "root:12345@tcp(172.24.0.1:3306)/cat"
+	dsn := "root:12345@tcp(simplesearching_mysql_1)/cat"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("failed to connect to database: %v", err)
