@@ -1,0 +1,19 @@
+groups:
+- name: test_alter
+  rules:
+  - alert: HighRequestRate
+    expr: rate(http_requests_total{job="web"}[5m]) > 100
+    for: 1m
+    labels:
+      servity: critical
+    annotations:
+      summary: High request rate on the web service.
+      description: '{{ $labels.instance }} is under heavy load.'
+  - alert: HighCPULoad
+    expr: node_load > 0.8
+    for: 5m
+    labels:
+      servity: warning
+    annotations:
+      summary: High CPU load detected.
+      description: '{{ $labels.instance }} is under heavy load.'
