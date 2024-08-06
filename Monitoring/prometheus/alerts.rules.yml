@@ -5,7 +5,7 @@ groups:
     expr: rate(http_requests_total{job="web"}[5m]) > 100
     for: 1m
     labels:
-      servity: critical
+      severity: critical
     annotations:
       summary: High request rate on the web service.
       description: '{{ $labels.instance }} is under heavy load.'
@@ -13,7 +13,7 @@ groups:
     expr: node_load > 0.8
     for: 5m
     labels:
-      servity: warning
+      severity: warning
     annotations:
       summary: High CPU load detected.
       description: '{{ $labels.instance }} is under heavy load.'
