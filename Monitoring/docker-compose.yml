@@ -3,8 +3,17 @@ services:
     build: ./nginx/
     container_name: nginx
     ports:
-      - 80:80
+      - 8080:8080
     restart: always
+    
+  nginx-prometheus-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx-prometheus-exporter
+    command: -nginx.scrape-uri http://nginx:8080/stub_status
+    ports:
+      - 9113:9113
+    depends_on:
+      - nginx 
 
   prometheus:
     image: prom/prometheus:latest
@@ -16,16 +25,6 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--web.enable-lifecycle'
-    restart: always
-
-  nginx-prometheus-exporter:
-    image: nginx/nginx-prometheus-exporter:latest
-    container_name: nginx-prometheus-exporter
-    command: -nginx.scrape-uri http://nginx:80/stub_status
-    ports:
-      - 9113:9113
-    depends_on:
-      - nginx
     restart: always
 
   grafana:
