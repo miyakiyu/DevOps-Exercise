@@ -1,6 +1,14 @@
 global:
   scrape_interval: 10s
 scrape_configs:
-  - job_name: 'nginx'
+  - job_name: "prometheus"
     static_configs:
-     - targets: ['web:80']
+      - targets: ["localhost:9090"]
+  - job_name: "nginx_exporter"
+    static_configs:
+      - targets: ["nginx-prometheus-exporter:9113"]
+alerting:
+  alertmanagers:
+    - scheme: http
+    - static_configs:
+        - targets: ["alertmanager:9093"]
