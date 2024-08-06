@@ -1,4 +1,11 @@
 services:
+  nginx:
+    build: ./nginx/
+    container_name: nginx
+    ports:
+      - 80:80
+    restart: always
+
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -9,6 +16,16 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--web.enable-lifecycle'
+    restart: always
+
+  nginx-prometheus-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx-prometheus-exporter
+    command: -nginx.scrape-uri http://nginx:80/stub_status
+    ports:
+      - 9113:9113
+    depends_on:
+      - nginx
     restart: always
 
   grafana:
@@ -29,11 +46,4 @@ services:
       - ./alertmanager:/etc/alertmanager
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
-    restart: always
-
-  web:
-    image: nginx:latest
-    container_name: nginx
-    ports:
-      - 80:80
     restart: always
