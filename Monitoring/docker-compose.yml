@@ -44,5 +44,5 @@ services:
     volumes:
       - ./alertmanager:/etc/alertmanager
     command:
-      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--config.file=/etc/alertmanager/config.yml'
     restart: always
