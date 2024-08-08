@@ -3,10 +3,10 @@ route:
 receivers:
   - name: "gmail-notifications"
     email_configs:
-      - to: sherry910509@gmail.com
-        from: sherry910509@gmail.com
+      - to: (YOUR_EMAIL)
+        from: (YOUR_EMAIL)
         smarthost: smtp.gmail.com:587
-        auth_username: sherry910509@gmail.com
-        auth_identity: sherry910509@gmail.com
+        auth_username: (YOUR_EMAIL)
+        auth_identity: (YOUR_EMAIL)
         auth_password: ijox jecz tdit cipc
         send_resolved: true
