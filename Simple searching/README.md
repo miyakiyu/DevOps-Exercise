@@ -1,5 +1,5 @@
 ## Simple searching 
-![Structure chart](https://github.com/miyakiyu/DevOps-Exercise/blob/main/Simple%20searching/Simplesearching)
+![Structure chart](https://github.com/miyakiyu/DevOps-Exercise/blob/main/Simple%20searching/pic/Simplesearching)
 
 *Using Docker to containerize the MySQL, Nginx and Golang to provide the web service, and managing these containers with docker-compose to create a simple search service.*
 
@@ -271,6 +271,6 @@ When I doing this project I have be beaten by a lot of unexcept problems, I writ
 
 ### Can't connect MySQL with GORM
 [reference](https://medium.com/tech-learn-share/docker-mysql-access-denied-for-user-172-17-0-1-using-password-yes-c5eadad582d3)
-![Error](/pic/request/problem.png)
+![Error](https://github.com/miyakiyu/DevOps-Exercise/blob/main/Simple%20searching/pic/Error)
 I've been trying to use GORM to connect to MySQL, but I've been encountering consistent failures. It's frustrating and waste my time. :(
 I suspected the issue might be due to incorrect user credentials or IP settings. So, I accessed the MySQL container to create a new user with the correct permissions and IP. After that, I finally able to connect successfully!
